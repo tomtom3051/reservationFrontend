@@ -1,0 +1,99 @@
+<div class="page" *ngIf="restError">
+    rest call failed: {{restErrorMessage}}
+</div>
+<div fxLayout="column" fxLayoutGap="10px" class="page">
+    <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="10px" class="m-2 topBoxes">
+        <mat-card class="m-2 matCardSmall">
+            <mat-card-header>
+                <mat-card-title>Search Reservations</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="searchFromGroup">
+                    <div fxLayout="column" fxLayoutGap="10px">
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <mat-form-field color="primary" appearance="standard" class="formField">
+                                <mat-label class="formLabel">Status</mat-label>
+                                <mat-select formControlName="status">
+                                    <mat-option value="">All</mat-option>
+                                    <mat-option *ngFor="let stat of allStatus" [value]="stat">{{stat}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="standard" class="formField">
+                                <mat-label>Clients</mat-label>
+                                <mat-select formControlName="client">
+                                    <mat-option value="">All</mat-option>
+                                    <mat-option *ngFor="let klant of allClients" [value]="klant">{{klant}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <mat-form-field color="accent" appearance="standard">
+                                <mat-label>Select StartDate</mat-label>
+                                <input formControlName="startDate" matInput [matDatepicker]="picker1">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field color="accent" appearance="standard">
+                                <mat-label>Select EndDate</mat-label>
+                                <input formControlName="endDate" matInput [matDatepicker]="picker2">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <button (click)="search()" class="buttonSave" mat-raised-button
+                                color="primary">Search</button>
+                            <button (click)="resetFormFields()" class="buttonCancel" mat-raised-button
+                                color="accent">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="m-2 matCardSmall">
+        <mat-card-header>
+            <mat-card-title>Manage Prices</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="priceFromGroup">
+                <div fxLayout="column" fxLayoutGap="10px">
+                    <mat-form-field color="primary" appearance="standard" class="formField">
+                        <mat-label class="formLabel">Price per hour</mat-label>
+                        <input matInput placeholder="hour price" formControlName="hourPrice" type="number">
+                    </mat-form-field>
+                    <mat-form-field color="primary" appearance="standard" class="formField">
+                        <mat-label class="formLabel">Price for Cleanup</mat-label>
+                        <input matInput placeholder="Clean up price" formControlName="cleanUpPrice" type="number">
+                    </mat-form-field>
+                    <mat-form-field color="primary" appearance="standard" class="formField">
+                        <mat-label class="formLabel">Price Bar Crew (per hour)</mat-label>
+                        <input matInput placeholder="hour price bar crew" formControlName="barCrewPrice" type="number">
+                    </mat-form-field>
+                    <div fxLayout="row" fxLayoutGap="10px">
+                        <button (click)="savePrices()" class="buttonSave" mat-raised-button
+                            color="primary">Save</button>
+                        <button (click)="resetFormFields()" class="buttonCancel" mat-raised-button
+                            color="accent">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+        </mat-card>
+    </div>
+
+
+    <ng-container *ngIf="! restError">
+        <ng-container *ngIf="reservationArray">
+            <mat-card class="m-2 matCard">
+                <mat-card-header>
+                    <mat-card-title>Overview Reservations</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <admin-table [reservationArray]="reservationArray" (onChangeSignal)="refreshResults($event)">
+                    </admin-table>
+                </mat-card-content>
+            </mat-card>
+        </ng-container>
+    </ng-container>
+
+</div>

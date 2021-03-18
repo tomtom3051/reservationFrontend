@@ -1,0 +1,50 @@
+
+.page {
+    background-color: #bbb;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    height: 90vh;
+}
+
+.topBoxes{
+    width: 86vw;
+
+
+}
+.matCardSmall {
+    // background-color: rgb(205,207,205);
+     //color: black;
+     width: 45vw;
+     margin-top: 10px;
+ }
+
+.matCard {
+    // background-color: rgb(205,207,205);
+     //color: black;
+     width: 86vw;
+     margin-top: 10px;
+ }
+ 
+.buttonSave, .buttonCancel {
+    margin-left: 5px;
+}
+
+.row{
+    width: 100%;
+    margin-left: 75px;
+}
+
+.formField{
+    width: 215px;
+}
+
+.reservationDate, .creationDate, .modifDate {
+    margin-right: 3px;
+}
+.id {
+    margin-right: 3px;
+}
+.duration, .status, .clientID {
+    margin-right: 3px;
+}

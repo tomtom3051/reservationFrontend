@@ -1,0 +1,59 @@
+<div class="page" *ngIf="restError">
+    rest call failed: {{restErrorMessage}}
+</div>
+
+<div class="page" *ngIf="! restError">
+    <div class="requestForm">
+        <form [formGroup]="reservationFormGroup">
+            <mat-card class="matCard">
+                <mat-card-header class="reservationHeader">
+                    <mat-card-title>Make Your Reservation</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div fxLayout="column" fxLayoutGap="10px">
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <mat-form-field color="primary" appearance="standard" class="formField">
+                                <mat-label>Select Date</mat-label>
+                                <input formControlName="reservationDate" [min]="todayDate" matInput
+                                    [matDatepicker]="picker1">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field color="primary" appearance="standard" class="formField">
+                                <mat-label>Select Duration in Hours</mat-label>
+                                <input matInput placeholder="8" type="number" formControlName="duration">
+                            </mat-form-field>
+
+                            <mat-form-field color="primary" appearance="standard" class="formField">
+                                <mat-label>Expected Number of Guests</mat-label>
+                                <input matInput placeholder="5" type="number" formControlName="numberOfGuests">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <mat-slide-toggle class="formField" formControlName="cleanUpCrew">Clean Up Crew Required</mat-slide-toggle>
+                            <mat-slide-toggle class="formField" formControlName="barCrew">Bar Crew Required</mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <button (click)="saveReservation()" class="buttonSave" mat-raised-button color="primary">Make Reservation</button>
+                            <button (click)="resetFormFields()" class="buttonCancel" mat-raised-button color="accent">Cancel</button>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </form>
+    </div>
+
+
+    <ng-container *ngIf="! restError">
+        <ng-container *ngIf="reservationArray">
+            <mat-card class="matCard">
+                <mat-card-header>
+                    <mat-card-title>Overview Reservations</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <request-table [reservationArray]="reservationArray" (onChangeSignal)="refreshResults($event)"></request-table>
+                </mat-card-content>
+            </mat-card>
+        </ng-container>
+    </ng-container>
+</div>

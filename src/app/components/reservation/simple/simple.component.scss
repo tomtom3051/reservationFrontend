@@ -1,0 +1,39 @@
+
+
+.page {
+    background-color: #bbb;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    height: 90vh;
+}
+
+.matCard {
+    // background-color: rgb(205,207,205);
+     //color: black;
+     width: 85vw;
+     margin-top: 10px;
+ }
+ 
+
+.buttonSave, .buttonCancel {
+    margin-left: 5px;
+}
+
+.formField{
+    width: 215px;
+}
+
+
+.row{
+width: 100%;
+}
+
+.reservationDate, .creationDate, .modifDate {
+    margin-right: 3px;
+    width: 180px;
+}
+.id, .duration, .status {
+        margin-right: 3px;
+        width: 80px;
+}

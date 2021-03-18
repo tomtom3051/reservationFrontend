@@ -1,0 +1,28 @@
+<div class="page" *ngIf="restError">
+    rest call failed: {{restErrorMessage}}
+</div>
+
+<div class="page">
+    <mat-card class="m-2 matCard">
+        <mat-card-header>
+            <mat-card-title class="bigTitle">Lots of information about the venue</mat-card-title>
+        </mat-card-header>
+        <mat-list>
+            <mat-list-item class="title">General Information</mat-list-item>
+            <mat-list-item class="title">Location</mat-list-item>
+            <mat-list-item class="title">Prices</mat-list-item>
+            <p class="par">The price for renting the venue is calculated as follows:</p>
+            <mat-list class="priceList">
+
+                <mat-list-item>Price per hour: AED {{hourPrice}}</mat-list-item>
+                <mat-list-item>Clean up crew: AED {{cleanUpPrice}}</mat-list-item>
+                <mat-list-item>Bar Crew/hour: AED {{barCrewPrice}}</mat-list-item>
+            </mat-list>
+            <mat-list-item class="title">Accomadation</mat-list-item>
+            <mat-list-item class="title">Pictures</mat-list-item>
+            <mat-list-item class="title">Ground plan</mat-list-item>
+        </mat-list>
+        <mat-card-content>
+        </mat-card-content>
+    </mat-card>
+</div>
