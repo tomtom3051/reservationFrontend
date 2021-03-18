@@ -49,7 +49,6 @@ export class AdminComponent implements OnInit {
         this.hourPrice.setValue(price.price);
       }
       if ("barCrewPrice".toLowerCase() === price.priceType.toLowerCase()) {
-
         this.barCrewPrice.setValue(price.price);
       }
     }
