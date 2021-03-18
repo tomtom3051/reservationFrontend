@@ -34,6 +34,9 @@ import { MatTableModule} from '@angular/material/table';
 import { MatSortModule} from '@angular/material/sort';
 import { AdminTableComponent } from './components/reservation/admin-table/admin-table.component';
 import { RequestTableComponent } from './components/reservation/request-table/request-table.component';
+import { PopupConfirmationComponent } from './components/general/popup-confirmation/popup-confirmation.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { RequestTableComponent } from './components/reservation/request-table/re
     UserReservationComponent,
     AdminComponent,
     AdminTableComponent,
-    RequestTableComponent
+    RequestTableComponent,
+    PopupConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +70,7 @@ import { RequestTableComponent } from './components/reservation/request-table/re
     MatListModule,
     MatIconModule,
     MatRadioModule,
+    GoogleMapsModule,
     MatSlideToggleModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -82,6 +87,10 @@ import { RequestTableComponent } from './components/reservation/request-table/re
   providers: [
     AuthGuard,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    PopupConfirmationComponent
+    , 
+  ]
 })
 export class AppModule { }

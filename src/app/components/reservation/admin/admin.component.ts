@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { iPrice, iReservations, iSearchRequest } from 'src/app/interfaces';
 import { RestCallsService } from 'src/app/services/rest-calls.service';
 
@@ -10,18 +11,19 @@ import { RestCallsService } from 'src/app/services/rest-calls.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  restError: boolean=false;
-  restErrorMessage: string="";
+  restError: boolean = false;
+  restErrorMessage: string = "";
   reservationArray: iReservations;
   searchFromGroup: FormGroup;
   allStatus: string[];
   allClients: string[];
-  todayDate:Date = new Date();
+  todayDate: Date = new Date();
   priceFromGroup: FormGroup;
   prices: iPrice[];
 
-  constructor(private restCallsService: RestCallsService,
-    private formBuilder: FormBuilder) { }
+  constructor(
+    private restCallsService: RestCallsService,
+    private formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
     this.resetFormFields();
@@ -33,14 +35,13 @@ export class AdminComponent implements OnInit {
 
   resetPriceFormField() {
     this.priceFromGroup = this.formBuilder.group({
-      hourPrice:  [, Validators.required],
-      cleanUpPrice:  ['', Validators.required],
+      hourPrice: [, Validators.required],
+      cleanUpPrice: ['', Validators.required],
       barCrewPrice: ['', Validators.required],
     })
   }
 
   populatePriceControls() {
-
     for (let price of this.prices) {
       if ("cleanUpPrice".toLowerCase() === price.priceType.toLowerCase()) {
         this.cleanUpPrice.setValue(price.price);
@@ -79,20 +80,20 @@ export class AdminComponent implements OnInit {
 
 
   resetFormFields() {
-    let start:Date = new Date();
-    let end:Date = new Date();
-    start.setDate(start.getDate() - 365);
-    end.setDate(end.getDate() + 3);
+    let start: Date = new Date();
+    let end: Date = new Date();
+    start.setDate(start.getDate() - 5);
+    end.setDate(end.getDate() + 30);
 
     this.searchFromGroup = this.formBuilder.group({
-      startDate:  [start, Validators.required],
-      endDate:  [end, Validators.required],
+      startDate: [start, Validators.required],
+      endDate: [end, Validators.required],
       status: '',
       client: ''
     })
   }
 
-  refreshResults(){
+  refreshResults() {
     console.log("refresh");
     this.search();
   }
@@ -103,17 +104,17 @@ export class AdminComponent implements OnInit {
     this.restError = false;
     this.restErrorMessage = "";
     this.restCallsService.postSavePricesRequest(this.prices)
-    .subscribe(
-      (response: iPrice[]) => {
-        this.resetPriceFormField();
-        this.prices = response;
-        this.populatePriceControls();
-      },
-      error => {
-        console.log("error");
-        this.restError = true;
-        this.restErrorMessage = error;
-      })
+      .subscribe(
+        (response: iPrice[]) => {
+          this.resetPriceFormField();
+          this.prices = response;
+          this.populatePriceControls();
+        },
+        error => {
+          console.log("error");
+          this.restError = true;
+          this.restErrorMessage = error;
+        })
   }
 
   search() {
@@ -121,19 +122,19 @@ export class AdminComponent implements OnInit {
     this.restErrorMessage = "";
     let searchrequest: iSearchRequest = {};
     searchrequest.clientID = this.client.value;
-    searchrequest.startDate =  this.startDate.value;
-    searchrequest.endDate =  this.endDate.value;
-    searchrequest.status =  this.status.value;
+    searchrequest.startDate = this.startDate.value;
+    searchrequest.endDate = this.endDate.value;
+    searchrequest.status = this.status.value;
     this.restCallsService.postSearchRequest(searchrequest)
-    .subscribe(
-      (response: iReservations) => {
-        this.reservationArray = response;
-      },
-      error => {
-        console.log("error");
-        this.restError = true;
-        this.restErrorMessage = error;
-      })
+      .subscribe(
+        (response: iReservations) => {
+          this.reservationArray = response;
+        },
+        error => {
+          console.log("error");
+          this.restError = true;
+          this.restErrorMessage = error;
+        })
   }
 
   get startDate() { return this.searchFromGroup.get('startDate'); }
@@ -141,13 +142,13 @@ export class AdminComponent implements OnInit {
   get status() { return this.searchFromGroup.get('status'); }
   get client() { return this.searchFromGroup.get('client'); }
 
- 
+
   updateStatus(requestID: string, status: string) {
     this.restError = false;
     this.restErrorMessage = "";
     this.restCallsService.updateReservationStatus(requestID, status)
       .subscribe(response => {
-       // console.log(response);
+        // console.log(response);
         this.getAllreservation();
       },
         error => {
@@ -172,20 +173,7 @@ export class AdminComponent implements OnInit {
           console.log("error");
           this.restError = true;
           this.restErrorMessage = error;
-        })
-
-    this.restCallsService.getAllClients()
-      .subscribe(
-        response => {
-          this.allClients = response as string[];
-         // console.log(this.allClients);
-        },
-        error => {
-          console.log("error");
-          this.restError = true;
-          this.restErrorMessage = error;
-        })
-    
+        });
   }
 
 
@@ -210,7 +198,7 @@ export class AdminComponent implements OnInit {
       .subscribe(
         response => {
           this.allClients = response as string[];
-         // console.log(this.allClients);
+          // console.log(this.allClients);
         },
         error => {
           console.log("error");
@@ -226,9 +214,9 @@ export class AdminComponent implements OnInit {
     this.restCallsService.getAllReservations()
       .subscribe(
         (response: iReservations) => {
-        this.reservationArray = response;
-        console.log(this.reservationArray);
-      },
+          this.reservationArray = response;
+          console.log(this.reservationArray);
+        },
         error => {
           console.log("error");
           this.restError = true;

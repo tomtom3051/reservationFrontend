@@ -5,46 +5,50 @@
     </ng-container>
 
     <ng-container matColumnDef="duration">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre">Duration</th>
-        <td mat-cell *matCellDef="let element" class="centre"> {{element.duration}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="leftAlign">Duration</th>
+        <td mat-cell *matCellDef="let element" class="leftAlign"> {{element.duration}} </td>
     </ng-container>
 
     <ng-container matColumnDef="clientID">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre">Client</th>
-        <td mat-cell *matCellDef="let element" class="centre"> {{element.clientID}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="leftAlign">Client</th>
+        <td mat-cell *matCellDef="let element" class="leftAlign"> {{element.clientID}} </td>
     </ng-container>
 
     <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre">Status</th>
-        <td mat-cell *matCellDef="let element" class="centre"> {{element.status}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="leftAlign">Status</th>
+        <td mat-cell *matCellDef="let element" class="leftAlign"> {{element.status}} </td>
     </ng-container>
 
     <ng-container matColumnDef="numberOfGuests">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Guests</th>
-        <td mat-cell *matCellDef="let element" class="centre"> {{element.numberOfGuests}} </td>
+        <td mat-cell *matCellDef="let element" class="leftAlign"> {{element.numberOfGuests}} </td>
     </ng-container>
 
     <ng-container matColumnDef="barCrew">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre">Bar Crew</th>
-        <td mat-cell *matCellDef="let element" class="centre"> {{element.barCrew}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="leftAlign">Bar Crew</th>
+        <td mat-cell *matCellDef="let element" class="leftAlign"> 
+            <span *ngIf="element.barCrew">Bar Crew</span> 
+        </td>
     </ng-container>
 
     <ng-container matColumnDef="cleanUpCrew">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre">CleanUp Crew</th>
-        <td mat-cell *matCellDef="let element" class="centre"> {{element.cleanUpCrew}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="leftAlign">CleanUp Crew</th>
+        <td mat-cell *matCellDef="let element" class="leftAlign"> 
+            <span *ngIf="element.cleanUpCrew">CleanUp Crew</span> 
+        </td>
     </ng-container>
 
     <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header class="centre">Price</th>
-        <td mat-cell *matCellDef="let element" class="centre"> {{element.price}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="leftAlign">Price</th>
+        <td mat-cell *matCellDef="let element" class="leftAlign"> {{element.price}} </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-        <td mat-cell *matCellDef="let element" class="centre">
+        <td mat-cell *matCellDef="let element" class="leftAlign">
             <div *ngIf="isDateAfterToday(element.reservationDate)" fxLayout="row" fxLayoutGap="4px">
-                <button *ngIf="element.status === 'requested'" mat-raised-button color="primary" type="submit" (click)="updateStatus(element.id,'approved')">Approve</button>
-                <button *ngIf="element.status === 'requested'" mat-raised-button color="accent" type="submit" (click)="updateStatus(element.id, 'rejected')">Reject</button>
+                <button *ngIf="element.status === 'requested'" mat-raised-button color="primary" type="submit" (click)="confirmUpdate(element.reservationDate,element.id,'approved')">Approve</button>
+                <button *ngIf="element.status === 'requested'" mat-raised-button color="accent" type="submit" (click)="confirmUpdate(element.reservationDate,element.id, 'rejected')">Reject</button>
             </div>
         </td>
     </ng-container>

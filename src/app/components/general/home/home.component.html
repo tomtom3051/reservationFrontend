@@ -1,8 +1,33 @@
-<div class="page" *ngIf="restError">
+<div class="errorpage" *ngIf="restError">
     rest call failed: {{restErrorMessage}}
 </div>
 
 <div class="page">
+    <div class="banner">
+        <img class="bcImage" src="/assets/background.jpeg">
+    </div>
+
+    
+
+    <google-map
+    height="500px"
+    width="100%"
+    [zoom]="zoom"
+    [center]="center"
+    [options]="options"></google-map>
+  
+  <!-- Use custom zoom buttons -->
+  <button (click)="zoomIn()">Zoom in</button>
+  <button (click)="zoomOut()">Zoom out</button>
+
+
+
+
+    <!--mat-card>
+        angular ryun ion different Project
+    </mat-card>
+
+
     <mat-card class="m-2 matCard">
         <mat-card-header>
             <mat-card-title class="bigTitle">Lots of information about the venue</mat-card-title>
@@ -24,5 +49,5 @@
         </mat-list>
         <mat-card-content>
         </mat-card-content>
-    </mat-card>
+    </mat-card-->
 </div>

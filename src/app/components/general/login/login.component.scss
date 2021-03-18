@@ -1,0 +1,14 @@
+.page {
+    background-color: #bbb;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    height: 90vh;
+}
+
+.wordwrap{
+    //word-wrap: break-word;
+    word-break: break-all;
+    width: 80vw; 
+    border: 1px solid #000000;
+}

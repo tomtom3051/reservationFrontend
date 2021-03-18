@@ -1,0 +1,10 @@
+<div class="cardHeader" mat-dialog-title>{{modalData.title}}</div>
+<div mat-dialog-content>
+  <p>{{modalData.message}}</p>
+</div>
+<div mat-dialog-actions>
+  <button type="button" color="accent" mat-raised-button  class="cancelButton midden"  (click)="noAction()">No</button>
+  <button type="button" color="primary" mat-raised-button  class="actionButton midden"  (click)="doAction()" cdkFocusInitial>{{modalData.confirmButtonText}}</button>
+</div>
+
+

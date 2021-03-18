@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { RestCallsService } from 'src/app/services/rest-calls.service';
+import { PopupConfirmationComponent } from '../popup-confirmation/popup-confirmation.component';
 
 @Component({
   selector: 'app-about',
@@ -9,10 +11,37 @@ import { RestCallsService } from 'src/app/services/rest-calls.service';
 })
 export class AboutComponent implements OnInit {
 
+
   constructor(private oauthService: OAuthService,
-    private restCallsService: RestCallsService) {
+    private restCallsService: RestCallsService,
+    private dialog: MatDialog) {
 
   }
+
+  popup() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "300px";
+
+    let modeldata: {title: string, message: string, confirmButtonText: string} = {
+      title: "Testpopup",
+      message: "Do you want to do something?",
+      confirmButtonText: "Maybe"
+    }
+
+    dialogConfig.data = modeldata;
+    let dialogRef = this.dialog.open(PopupConfirmationComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.action) {
+        console.log("action: " +result.action) ;
+      }
+    });
+  }
+
+
 
   ngOnInit(): void {
   }
