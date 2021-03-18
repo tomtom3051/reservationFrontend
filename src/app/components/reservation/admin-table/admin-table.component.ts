@@ -3,6 +3,8 @@ import { iReservation, iReservations } from 'src/app/interfaces';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { RestCallsService } from 'src/app/services/rest-calls.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { PopupConfirmationComponent } from '../../general/popup-confirmation/popup-confirmation.component';
 
 @Component({
   selector: 'admin-table',
@@ -57,6 +59,36 @@ export class AdminTableComponent implements OnInit, OnChanges, AfterViewInit   {
           this.restErrorMessage = error;
         })
   }
+
+  confirmUpdate(reservationDate:Date, requestID: string, status: string) {
+    const dialogConfig = new MatDialogConfig();
+
+    let rDate = new Date(reservationDate);
+    let dd = String(rDate.getDate()).padStart(2, '0');
+    let mm = String(rDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = rDate.getFullYear();
+    let dateString = dd+"/"+mm+"/"+yyyy;
+
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "300px";
+
+    let modeldata: {title: string, message: string, confirmButtonText: string} = {
+      title: "Reservation " + dateString,
+      message: "Are you sure you wich to change the status for this reservation to " + status + "?",
+      confirmButtonText: "Yes"
+    }
+
+    dialogConfig.data = modeldata;
+    let dialogRef = this.dialog.open(PopupConfirmationComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.action) {
+        this.updateStatus(requestID, status);
+      }
+    });
+  }
   
-  constructor(private restCallsService: RestCallsService) { }
+  constructor(private restCallsService: RestCallsService, private dialog: MatDialog) { }
 }

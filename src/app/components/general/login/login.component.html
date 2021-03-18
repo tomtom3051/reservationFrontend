@@ -1,56 +1,53 @@
-<div  class="login-register" >
-    <div class="login-register-box">
-        <mat-card class="m-t-10">
-        <mat-card-content>
-            <div class="text-center">
-                <h2 class="m-t-0">Welcome to ReservationApp</h2>
-                <h4 class="m-t-0">Logged In: {{isLoggedIn}}</h4>
-            </div>
-            <div fxLayout="row wrap">
-
-                <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" >
-                    <button mat-raised-button color="primary" (click)="login()" class="btn-block btn-lg m-t-20 m-b-20" type="button" >Sign In</button>
+<div fxLayout="column" fxLayoutGap="10px" class="page">
+    <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="10px" class="m-2 topBoxes">
+        <mat-card class="m-2 matCardSmall">
+            <mat-card-header>
+                <mat-card-title>Welcome to ReservationApp</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <button mat-raised-button color="primary" (click)="login()" type="button">Sign In</button>
                 </div>
-
-
-                <!--div fxFlex.gt-sm="100" fxFlex.gt-xs="100" >
-                    <button mat-raised-button color="primary" (click)="logout()" class="btn-block btn-lg m-t-20 m-b-20" type="button" >logout</button>
-                </div-->
-
-            </div>
-        </mat-card-content>
+            </mat-card-content>
         </mat-card>
     </div>
+    <mat-card class="m-2 matCardSmall">
+        <mat-card-title>Auth Debug Data</mat-card-title>
+        <mat-card-content>
+            <div fxLayout="column" fxLayoutGap="10px">
+                <mat-card>
+                    <mat-card-title>loggedIn</mat-card-title>
+                    <mat-card-content>{{isLoggedIn}}
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card>
+                    <mat-card-title>idToken</mat-card-title>
+                    <mat-card-content>
+                        <div class="wordwrap">{{idToken}}</div>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card>
+                    <mat-card-title>refreshToken</mat-card-title>
+                    <mat-card-content>
+                        <div class="wordwrap">{{refreshToken}}</div>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card>
+                    <mat-card-title>identityClaims</mat-card-title>
+                    <mat-card-content>
+                        <div class="wordwrap">{{identityClaims | json}}</div>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card>
+                    <mat-card-title>logoutUrl</mat-card-title>
+                    <mat-card-content>{{logoutUrl}}
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </mat-card-content>
+    </mat-card>
 </div>
-
-
-
-<mat-card>
-    <mat-card-title>loggedIn</mat-card-title>
-    <mat-card-content>{{isLoggedIn}}
-    </mat-card-content>
-</mat-card>
-
-<mat-card>
-    <mat-card-title>idToken</mat-card-title>
-    <mat-card-content><div class="wordwrap">{{idToken}}</div>
-    </mat-card-content>
-</mat-card>
-
-<mat-card>
-    <mat-card-title>refreshToken</mat-card-title>
-    <mat-card-content><div class="wordwrap">{{refreshToken}}</div>
-    </mat-card-content>
-</mat-card>
-
-<mat-card>
-    <mat-card-title>identityClaims</mat-card-title>
-    <mat-card-content><div class="wordwrap">{{identityClaims | json}}</div>
-    </mat-card-content>
-</mat-card>
-
-<mat-card>
-    <mat-card-title>logoutUrl</mat-card-title>
-    <mat-card-content>{{logoutUrl}}
-    </mat-card-content>
-</mat-card>

@@ -1,7 +1,8 @@
 import { AuthConfig } from "angular-oauth2-oidc";
 
 export const authConfig: AuthConfig = {
-    issuer: 'http://localhost:8080/auth/realms/reservations',
+    //issuer: 'http://localhost:8080/auth/realms/reservations',
+    issuer: 'https://api.sijbers.net/auth/realms/reservations',
     redirectUri: window.location.origin + "/login",
     clientId: 'spa-reservations',
     scope: 'openid profile email offline_access',
