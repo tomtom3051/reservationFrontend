@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { HomeComponent } from './components/general/home/home.component';
 import { AboutComponent } from './components/general/about/about.component';
 import { NotfoundComponent } from './components/general/notfound/notfound.component';
@@ -36,6 +36,11 @@ import { AdminTableComponent } from './components/reservation/admin-table/admin-
 import { RequestTableComponent } from './components/reservation/request-table/request-table.component';
 import { PopupConfirmationComponent } from './components/general/popup-confirmation/popup-confirmation.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { FooterComponent } from './components/general/footer/footer.component';
+import { LoaderComponent } from './components/general/loader/loader.component';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { LoaderService } from './services/loader.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -52,7 +57,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
     AdminComponent,
     AdminTableComponent,
     RequestTableComponent,
-    PopupConfirmationComponent
+    PopupConfirmationComponent,
+    FooterComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +78,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     MatIconModule,
     MatRadioModule,
     GoogleMapsModule,
+    MatProgressSpinnerModule,
     MatSlideToggleModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -86,6 +94,13 @@ import { GoogleMapsModule } from '@angular/google-maps';
   ],
   providers: [
     AuthGuard,
+    LoaderService, 
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: LoaderInterceptor, 
+      multi: true 
+    }, 
+
   ],
   bootstrap: [AppComponent],
   entryComponents: [

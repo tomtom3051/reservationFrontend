@@ -4,24 +4,55 @@
 
 <div class="page">
     <div class="banner">
-        <img class="bcImage" src="/assets/background.jpeg">
+        <img class="bcImage" src="/assets/kids.jpeg">
     </div>
 
-    
+    <div class="TwoBoxes" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="10px">
 
-    <google-map
-    height="500px"
-    width="100%"
-    [zoom]="zoom"
-    [center]="center"
-    [options]="options"></google-map>
-  
-  <!-- Use custom zoom buttons -->
-  <button (click)="zoomIn()">Zoom in</button>
-  <button (click)="zoomOut()">Zoom out</button>
+        <div class="mapBox">
 
+            <google-map height="500px" width="100%" [zoom]="zoom" [center]="center" [options]="options"
+                (mapClick)="click($event)">
+                <map-marker #somemarker="mapMarker" *ngFor="let marker of markers" [position]="marker.position"
+                    [label]="marker.label" [title]="marker.title" [options]="marker.options"
+                    (mapClick)="openInfo(markerElem, marker.info)">
+                </map-marker>
 
+                <map-info-window>{{ infoContent }}</map-info-window>
+            </google-map>
+        </div>
+        <div class="descriptionBox" fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="10px">
+            <mat-card class="m-2 matCard">
+                <mat-card-title class="bigTitle">Welcome to the reservation app</mat-card-title>
+                <mat-card-content>
+                    <div class="description">
+                        <p class="par">This application is made by Tom Sijbers for his course Computer Science IA.</p>
+                        <p class="par">This is a demo site and all information is testData. </p>
+                        <p class="par">This is a full stack application based on Sping boot, Angular, mysql and keycloak.</p>
+                        <p class="par">This description is actually reserved to give information about the venue.</p>
+                        <p class="par">For access as adminitrator, use these credentials: unifi@sijbers.net/Password1</p>
+                        <p class="par">For access as a normal visitor wanting to make a reservation, kindly use the registration wizard on the login screen.</p>
+                        <p class="par">You can see an overview of the backend API calls on <a href="/swagger-ui.html"> swagger</a></p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card class="m-2 matCard">
+                <mat-card-title class="bigTitle">Prices</mat-card-title>
+                <mat-card-content>
+                    <div class="description">
+                        <p class="par">The price for renting the venue is calculated as follows:</p>
+                        <mat-list class="priceList">
+            
+                            <mat-list-item><p class="parPrice">Price per hour: AED {{hourPrice}}</p></mat-list-item>
+                            <mat-list-item><p class="parPrice">Clean up crew: AED {{cleanUpPrice}}</p></mat-list-item>
+                            <mat-list-item><p class="parPrice">Bar Crew/hour: AED {{barCrewPrice}}</p></mat-list-item>
+                        </mat-list>
+                    </div>
+                </mat-card-content>
+            </mat-card>
 
+        </div>
+    </div>
 
     <!--mat-card>
         angular ryun ion different Project

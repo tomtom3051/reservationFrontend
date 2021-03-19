@@ -72,7 +72,7 @@ export class AdminTableComponent implements OnInit, OnChanges, AfterViewInit   {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "300px";
+    dialogConfig.width = "400px";
 
     let modeldata: {title: string, message: string, confirmButtonText: string} = {
       title: "Reservation " + dateString,
