@@ -86,7 +86,7 @@
         <ng-container *ngIf="reservationArray">
             <mat-card class="m-2 matCard">
                 <mat-card-header>
-                    <mat-card-title>Overview Reservations</mat-card-title>
+                    <mat-card-title>Overview Reservations (table is sortable per column)</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <admin-table [reservationArray]="reservationArray" (onChangeSignal)="refreshResults($event)">
