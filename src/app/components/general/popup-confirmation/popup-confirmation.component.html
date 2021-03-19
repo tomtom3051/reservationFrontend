@@ -1,5 +1,9 @@
-<div class="cardHeader" mat-dialog-title>{{modalData.title}}</div>
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="cardHeader" mat-dialog-title>
+  <mat-icon class="icon" aria-hidden="false" aria-label="Warning">warning</mat-icon>
+  <div>{{modalData.title}}</div>
+</div>
 <div mat-dialog-content>
+ 
   <p>{{modalData.message}}</p>
 </div>
 <div mat-dialog-actions>

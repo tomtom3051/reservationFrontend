@@ -58,6 +58,7 @@ export class SimpleComponent implements OnInit {
 
 
   saveReservation() {
+    console.log(this.reservationFormGroup.hasError);
     console.log("save");
     this.restError = false;
     this.restErrorMessage = "";

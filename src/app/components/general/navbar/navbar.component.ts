@@ -28,7 +28,9 @@ export class NavbarComponent implements OnInit {
   }
 
   public login() {
-    this.routes.navigate(['/login']);
+    this.oauthService.initLoginFlow();  
+
+    //this.routes.navigate(['/login']);
     // this.oauthService.initLoginFlow();
   }
 

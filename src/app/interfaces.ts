@@ -1,5 +1,5 @@
 export interface iReservations {
-    reservations?: []
+    reservations?: iReservation[]
 }
 
 export interface iReservation {

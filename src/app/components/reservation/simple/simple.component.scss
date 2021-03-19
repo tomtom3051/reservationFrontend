@@ -4,17 +4,20 @@
     background-color: #bbb;
     margin-left: auto;
     margin-right: auto;
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     height: 90vh;
 }
 
-.matCard {
-    // background-color: rgb(205,207,205);
-     //color: black;
-     width: 85vw;
+.matCardRight {
+     width: 60vw;
      margin-top: 10px;
  }
  
+.matCardLeft {
+    width: 30vw;;
+    margin-top: 10px;
+}
 
 .buttonSave, .buttonCancel {
     margin-left: 5px;
@@ -24,6 +27,9 @@
     width: 215px;
 }
 
+.TwoBoxes{
+   // background-color: red;
+}
 
 .row{
 width: 100%;
@@ -37,3 +43,27 @@ width: 100%;
         margin-right: 3px;
         width: 80px;
 }
+
+
+.bcImage {
+    vertical-align: middle;
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+ }
+
+ .banner {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    width: 100%;
+    height: 370px;
+ }
+
+ .overFlow{
+//    display: flex;    
+    overflow-y: auto;
+    max-height: 47vh;
+
+ }

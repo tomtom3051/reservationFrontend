@@ -5,29 +5,47 @@
     padding: 10px;
 }
 .page {
-    background-color: #bbb;
+    background-color: rgb(240, 238, 238);
     margin-left: auto;
     margin-right: auto;
     padding-left: 10px;
     padding-right: 10px;
     height: 90vh;
+ //   background-image: url("/assets/background.jpeg");
+   // opacity: 0.35;
+}
+
+
+.mapBox{
+    width: 40vw;
+    margin-top: 10px;
 }
 
 .matCard {
-     width: 85vw;
+     width: 60vw;
      margin-top: 10px;
  }
 
  .bigTitle{
-    font-size: 3em;
+    font-size: 2em;
  }
+
+
+ .description{
+    font-size: 95%;
+    color: #33485e!important;
+ }
+
  .title{
      font-size: 2em;
  }
 
  .par{
-     color:black;
-     margin-left: 30px;
+     margin-left: 10px;
+ }
+
+ .parPrice {
+    color: #33485e!important;
  }
 
  .priceList{
@@ -40,6 +58,7 @@
     width: 100%; 
     height: 100%; 
     object-fit: cover;
+    opacity: 1;
  }
 
  .banner {
@@ -50,7 +69,3 @@
     width: 100%;
     height: 370px;
  }
-
- agm-map {
-    height: 300px;
-  }
