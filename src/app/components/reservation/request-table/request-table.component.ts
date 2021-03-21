@@ -35,6 +35,21 @@ export class RequestTableComponent implements OnInit, OnChanges, AfterViewInit {
     this.dataSource = new MatTableDataSource(this.reservationArray.reservations);
   }
 
+  updateStatus(requestID: string, status: string) {
+    console.log("updating");
+    this.restError = false;
+    this.restErrorMessage = "";
+    this.restCallsService.updateReservationStatus(requestID, status)
+      .subscribe(response => {
+        this.onChangeSignal.emit(response);
+      },
+        error => {
+          console.log("error");
+          this.restError = true;
+          this.restErrorMessage = error;
+        })
+  }
+
   confirmUpdate(reservationDate:Date, requestID: string, status: string) {
     const dialogConfig = new MatDialogConfig();
 
@@ -65,20 +80,6 @@ export class RequestTableComponent implements OnInit, OnChanges, AfterViewInit {
     });
   }
 
-  updateStatus(requestID: string, status: string) {
-    console.log("updating");
-    this.restError = false;
-    this.restErrorMessage = "";
-    this.restCallsService.updateReservationStatus(requestID, status)
-      .subscribe(response => {
-        this.onChangeSignal.emit(response);
-      },
-        error => {
-          console.log("error");
-          this.restError = true;
-          this.restErrorMessage = error;
-        })
-  }
 
 
   

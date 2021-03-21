@@ -29,7 +29,6 @@ export class RestCallsService {
 
   constructor(private httpClient: HttpClient) { }
 
-
   getAllPrices() {
     let myUrl = this.getAllPricesUrl;
     console.log("calling: " + myUrl);
@@ -37,6 +36,10 @@ export class RestCallsService {
       catchError(this.handleError));
   }
 
+  postReservationRequest(postObject){
+    return this.httpClient.post(this.postReservationUrl, postObject, httpOptions).pipe(
+      catchError(this.handleError));
+  }   
 
   updateReservationStatus(requestID: string, status:string){
     let myUrl = this.getChangeStatusUrl + "/" + requestID  + "/"  + status ;
@@ -70,11 +73,6 @@ export class RestCallsService {
     let myUrl = this.getMyReservationsUrl;
     console.log("calling: " + myUrl);
     return this.httpClient.get(myUrl,httpOptions).pipe(
-      catchError(this.handleError));
-  }
-
-  postReservationRequest(postObject){
-    return this.httpClient.post(this.postReservationUrl, postObject, httpOptions).pipe(
       catchError(this.handleError));
   }
 
