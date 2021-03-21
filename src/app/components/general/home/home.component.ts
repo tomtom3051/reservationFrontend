@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { Router } from '@angular/router';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { iPrice } from 'src/app/interfaces';
 import { RestCallsService } from 'src/app/services/rest-calls.service';
 
@@ -21,7 +23,7 @@ export class HomeComponent implements OnInit {
     zoomControl: true,
     scrollwheel: true,
     disableDoubleClickZoom: false,
-    mapTypeId: 'hybrid',
+    mapTypeId: 'roadmap',
     maxZoom: 15,
     minZoom: 2,
   }
@@ -36,8 +38,11 @@ export class HomeComponent implements OnInit {
   cleanUpPrice: number;
   barCrewPrice: number;
 
+  public login() {
+    this.oauthService.initLoginFlow();  
+  }
 
-  constructor(private restCallsService: RestCallsService) { }
+  constructor(private routes: Router, private restCallsService: RestCallsService, private oauthService: OAuthService) { }
 
   successCallback(position) {
     console.log("succes: " + position);
@@ -54,7 +59,7 @@ export class HomeComponent implements OnInit {
     this.getAllPrices();
 
     this.center = {lat: 25.13194, lng: 55.11667};
-    navigator.geolocation.getCurrentPosition(this.successCallback,this.errorCallback,{timeout:2000});
+   // navigator.geolocation.getCurrentPosition(this.successCallback,this.errorCallback,{timeout:2000});
     this.addMarker(this.center.lat, this.center.lng);
 
   }
@@ -110,6 +115,23 @@ export class HomeComponent implements OnInit {
       }
     }
   }
+
+  makeReservation() {
+    if (this.oauthService.hasValidIdToken()) {
+      this.routes.navigate(['/simple']);
+    }
+  }
+
+  get givenName() {
+    const claims = this.oauthService.getIdentityClaims();
+    if (!claims) {
+      return null;
+    }
+    return claims['preferred_username'];
+  }
+
+  public get isLoggedIn() { return this.oauthService.hasValidIdToken(); }
+
 
   getAllPrices() {
     this.restError = false;

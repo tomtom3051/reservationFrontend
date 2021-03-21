@@ -17,23 +17,36 @@
 
 
 .mapBox{
-    width: 40vw;
+    min-width: 40vw;
     margin-top: 10px;
 }
 
 .matCard {
-     width: 60vw;
+     min-width: 60vw;
      margin-top: 10px;
+ }
+
+ .TwoSubBoxes{
+   min-width: 60vw;
+   margin-top: 10px;
+ }
+
+ .matCardLittle {
+   min-width: 30vw;
+   margin-top: 10px;
  }
 
  .bigTitle{
     font-size: 2em;
  }
 
-
  .description{
     font-size: 95%;
     color: #33485e!important;
+ }
+
+ .OneBox {
+    height: 100px;
  }
 
  .title{
@@ -58,6 +71,7 @@
     width: 100%; 
     height: 100%; 
     object-fit: cover;
+    object-position: 0% 20%;
     opacity: 1;
  }
 

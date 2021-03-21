@@ -31,16 +31,6 @@ export class AdminTableComponent implements OnInit, OnChanges, AfterViewInit   {
     this.dataSource = new MatTableDataSource(this.reservationArray.reservations);
   }
 
-  isDateAfterToday(reservationDate):boolean {
-    let rDate = new Date(reservationDate);
-    let today:Date = new Date();
-
-    if (rDate>today){
-      return true;
-    }
-    return false;
-  }
-  
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.reservationArray.reservations);
   }
@@ -59,7 +49,7 @@ export class AdminTableComponent implements OnInit, OnChanges, AfterViewInit   {
           this.restErrorMessage = error;
         })
   }
-
+  
   confirmUpdate(reservationDate:Date, requestID: string, status: string) {
     const dialogConfig = new MatDialogConfig();
 
@@ -88,6 +78,17 @@ export class AdminTableComponent implements OnInit, OnChanges, AfterViewInit   {
         this.updateStatus(requestID, status);
       }
     });
+  }
+
+
+  isDateAfterToday(reservationDate):boolean {
+    let rDate = new Date(reservationDate);
+    let today:Date = new Date();
+
+    if (rDate>today){
+      return true;
+    }
+    return false;
   }
   
   constructor(private restCallsService: RestCallsService, private dialog: MatDialog) { }

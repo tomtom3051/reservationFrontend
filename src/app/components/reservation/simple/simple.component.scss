@@ -6,16 +6,17 @@
     margin-right: auto;
     padding-left: 10px;
     padding-right: 10px;
-    height: 90vh;
+    min-height: 90vh;
 }
 
 .matCardRight {
-     width: 60vw;
+   //  width: 60vw;
+   min-width: 60vw;
      margin-top: 10px;
  }
  
 .matCardLeft {
-    width: 30vw;;
+    min-width: 30vw;
     margin-top: 10px;
 }
 

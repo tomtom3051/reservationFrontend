@@ -9,7 +9,7 @@
         <img class="bcImage" src="/assets/background.jpeg">
     </div>
 
-    <div class="TwoBoxes" fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px">
+    <div class="TwoBoxes" fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxLayout.sm="column" fxLayout.xs="column">
         <div class="requestForm">
             <form [formGroup]="reservationFormGroup">
                 <mat-card class="matCardLeft">
@@ -36,14 +36,14 @@
                                     <input matInput placeholder="5" type="number" formControlName="numberOfGuests">
                                 </mat-form-field>
                             </div>
-                            <div fxLayout="row" fxLayoutGap="10px">
+                            <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
                                 <mat-slide-toggle class="formField" formControlName="cleanUpCrew">Clean Up Crew Required
                                 </mat-slide-toggle>
                                 <mat-slide-toggle class="formField" formControlName="barCrew">Bar Crew Required
                                 </mat-slide-toggle>
                             </div>
                             <div fxLayout="row" fxLayoutGap="10px">
-                                <button (click)="saveReservation()" class="buttonSave" mat-raised-button
+                                <button  (click)="saveReservation()" class="buttonSave" mat-raised-button
                                     color="primary">Make Reservation</button>
                                 <button (click)="resetFormFields()" class="buttonCancel" mat-raised-button
                                     color="accent">Cancel</button>
