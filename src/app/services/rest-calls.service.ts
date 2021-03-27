@@ -26,6 +26,7 @@ export class RestCallsService {
   private postSearchRequestUrl = "/api/searchReservation";
   private getAllPricesUrl = "/api/getAllPrices";
   private postSavePricesUrl = "/api/admin/savePrices";
+  private getCancelRequestUrl = "/api/admin/cancel/";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -36,11 +37,19 @@ export class RestCallsService {
       catchError(this.handleError));
   }
 
+  getCancelRequest(requestID: string) {
+    let myUrl = this.getCancelRequestUrl + requestID;
+    console.log("calling: " + myUrl);
+    return this.httpClient.get(myUrl,httpOptions).pipe(
+      catchError(this.handleError));
+  }
+
   postReservationRequest(postObject){
     return this.httpClient.post(this.postReservationUrl, postObject, httpOptions).pipe(
       catchError(this.handleError));
   }   
 
+  
   updateReservationStatus(requestID: string, status:string){
     let myUrl = this.getChangeStatusUrl + "/" + requestID  + "/"  + status ;
     console.log("calling: " + myUrl);
